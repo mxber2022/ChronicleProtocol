@@ -1,0 +1,21 @@
+# Compiler files
+cache/
+out/
+
+# Ignore broadcast logs
+broadcast/
+
+# Forge generated docs
+docs_generated/
+
+# Dotenv file
+.env
+
+# Coverage file
+lcov.info
+
+# ABIs directory
+abis/
+
+# Flattened directory
+flattened/

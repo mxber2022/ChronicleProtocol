@@ -1,0 +1,21 @@
+# Compiler files
+cache/
+out/
+
+# Ignore broadcast logs
+broadcast/
+
+# Forge auto-generated docs
+docs_generated/
+
+# Dotenv file
+.env
+
+# Coverage file
+lcov.info
+
+# Flattened contracts
+flattened/
+
+# Generated contract ABIs
+abis/
