@@ -15,10 +15,10 @@ The `self-kisser` folder contains the smart contract code and deployment scripts
 The `frontend` folder contains the React application.
 
 
-`#` Smart Contract deployment address
+###  Smart Contract deployment address
 
 mantletestnet OracleData contract - 0x0f76795A084241a731C7Cc481DceCDF646064912  
 
-`#` Contract deployment Link (mantle testnet explorer)
+### Contract deployment Link (mantle testnet explorer)
 
 https://explorer.testnet.mantle.xyz/address/0x0f76795A084241a731C7Cc481DceCDF646064912/contracts#address-tabs

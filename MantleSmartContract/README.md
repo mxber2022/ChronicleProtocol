@@ -18,7 +18,7 @@ npx hardhat verify --network mantle-testnet 0x0f76795A084241a731C7Cc481DceCDF646
 
 `#` Smart Contract deployment address
 
-mantletestnet oracle contract - 0x0f76795A084241a731C7Cc481DceCDF646064912  
+mantletestnet OracleData contract - 0x0f76795A084241a731C7Cc481DceCDF646064912  
 
 `#` Contract deployment Link (mantle testnet explorer)
 
