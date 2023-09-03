@@ -5,17 +5,16 @@ import Oracle from './components/Oracle/Oracle';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { arbitrum, goerli, mainnet, polygon } from 'wagmi/chains';
+import { sepolia, mantleTestnet } from 'wagmi/chains';
 
-import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { publicProvider } from 'wagmi/providers/public';
 
-const chains = [arbitrum, mainnet, polygon, goerli];
+const chains = [sepolia, mantleTestnet];
 const projectId = '59198889d7df78b39ea70d871d0ec131';
 
 const { publicClient } = configureChains(
   chains, 
-  [alchemyProvider({ apiKey: '_HaCAEADifV16NSoWZ0DJ-pKt-zFOfaK' })],
-  [w3mProvider({ projectId })]
+  [publicProvider()]
 );
 
 const wagmiConfig = createConfig({
