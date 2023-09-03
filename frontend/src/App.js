@@ -1,6 +1,6 @@
 import './App.css';
 import Nav from './components/Nav/Nav';
-import Fetch from './components/FetchTokenBound/Fetch';
+import Oracle from './components/Oracle/Oracle';
 
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
@@ -31,7 +31,7 @@ function App() {
     <>
       <WagmiConfig config={wagmiConfig}>
         <Nav/>
-        <Fetch/>
+        <Oracle/>
       </WagmiConfig>
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>

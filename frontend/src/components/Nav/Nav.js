@@ -5,12 +5,6 @@ function Nav () {
         <>
             <nav className="nav">
                 <div>
-                    {
-                        /* <h1>This is Nav Bar</h1> */
-                    }
-                </div>
-
-                <div>
                     <Web3Button />
                 </div>              
             </nav>
