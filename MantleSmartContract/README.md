@@ -12,10 +12,10 @@ npx hardhat run scripts/deploy.js --network mantle-testnet
 Try running the following tasks to verify contract:
 
 ```shell
-npx hardhat verify --network mantle-testnet 0x14FFF76Ee7182093F5FE343eEDd2d772A40DE497
+npx hardhat verify --network mantle-testnet 0x0f76795A084241a731C7Cc481DceCDF646064912
 
 ```
 
 `#` Contract deployment address
 
-mantletestnet oracle contract - 0x14FFF76Ee7182093F5FE343eEDd2d772A40DE497  
+mantletestnet oracle contract - 0x0f76795A084241a731C7Cc481DceCDF646064912  

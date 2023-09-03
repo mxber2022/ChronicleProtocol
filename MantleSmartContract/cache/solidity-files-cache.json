@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/maharajababu/Documents/Projects/ChronicleProtocol/MantleSmartContract/contracts/OracleData.sol": {
-      "lastModificationDate": 1693699886052,
-      "contentHash": "9ade378c779167e2dfd1bc67bcfe529b",
+      "lastModificationDate": 1693706585330,
+      "contentHash": "311dc48fde5e1e8c5988f6f92a09e760",
       "sourceName": "contracts/OracleData.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -28,9 +28,7 @@
           }
         }
       },
-      "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.9"
       ],
