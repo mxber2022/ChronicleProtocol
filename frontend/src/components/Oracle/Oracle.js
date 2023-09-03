@@ -72,6 +72,8 @@ function Oracle () {
 
         let ETHPrice = await CONT_ETH_USD_CONTRACT.tryRead();
         let BTCPrice = await CONT_BTC_USD_CONTRACT.tryRead();
+        console.log("HELLO:",(parseInt(BTCPrice[1]._hex)).toString().replace(".", "").slice(0, -5)/10);
+
         let MATICPrice = await CONT_MATIC_USD_CONTRACT.tryRead();
         let OPPrice = await CONT_OP_USD_CONTRACT.tryRead();
         let SOLPrice= await CONT_SOL_USD_CONTRACT.tryRead();
@@ -80,7 +82,7 @@ function Oracle () {
         
 
         console.log("ETHPrice: ",parseInt(ETHPrice[1]._hex).toString().replace(".", "").slice(0, -10)/10);
-        console.log("BTCPrice: ",parseInt(BTCPrice[1]._hex).toString().replace(".", "").slice(0, -15)/10);
+        console.log("BTCPrice: ",(parseInt(BTCPrice[1]._hex)).toString().replace(".", "").slice(0, -5)/10);
         console.log("MATICPrice: ",parseInt(parseInt(MATICPrice[1]._hex).toString().slice(0, -17))/10);
         console.log("OPPrice: ",parseInt(parseInt(OPPrice[1]._hex).toString().slice(0, -17))/10);
         console.log("SOLPrice: ",parseInt(parseInt(SOLPrice[1]._hex).toString().slice(0, -17))/10);
@@ -88,7 +90,7 @@ function Oracle () {
         console.log("LINKPrice: ",parseInt(parseInt(LINKPrice[1]._hex).toString().slice(0, -17))/10);
 
         setEthx(parseInt(ETHPrice[1]._hex).toString().replace(".", "").slice(0, -10)/10);
-        setBtcx(parseInt(BTCPrice[1]._hex).toString().replace(".", "").slice(0, -15)/10);
+        setBtcx((parseInt(BTCPrice[1]._hex)).toString().replace(".", "").slice(0, -5)/10);
         setMaticx(parseInt(parseInt(MATICPrice[1]._hex).toString().slice(0, -17))/10);
         setOpx(parseInt(parseInt(OPPrice[1]._hex).toString().slice(0, -17))/10);
         setSolx(parseInt(parseInt(SOLPrice[1]._hex).toString().slice(0, -17))/1);
@@ -97,6 +99,7 @@ function Oracle () {
 
     }
 
+    const [vola, setVola] = React.useState('')
     async function calculateVolatility() {
         
         const tempETH_yes = 160;
@@ -109,7 +112,7 @@ function Oracle () {
 
         const AverageVolatility = Math.abs((parseFloat(debouncedEthx)  - tempETH_yes)/tempETH_yes) + Math.abs((parseFloat(debouncedBtcx)-tempBTC)/tempBTC) + Math.abs((parseFloat(debouncedMaticx)-tempMatic)/tempMatic) + Math.abs((parseFloat(debouncedOpx)-tempOp)/tempOp) + Math.abs((parseFloat(debouncedSolx)-tempsol)/tempsol) + Math.abs((parseFloat(debouncedYfi) -tempYfi)/tempYfi) + Math.abs((parseFloat(debouncedLinkx)-tempLink)/tempLink);
         console.log("AverageVolatility: ", AverageVolatility);
-
+        setVola(AverageVolatility);
         /* 
             IBTA_DATA
         */
@@ -119,6 +122,11 @@ function Oracle () {
         let CONTRACT = new ethers.Contract(IBTA_CONTRACT, abi, signer);
         let IBTA_DATA = await CONTRACT.tryRead();
         console.log("IBTA_DATA: ", parseInt(IBTA_DATA[1]._hex));
+
+        const IBTA_YESTERDAY = 25854399999999999635456;
+
+        const temp = (parseInt(IBTA_DATA[1]._hex) - IBTA_YESTERDAY)/IBTA_YESTERDAY;
+        console.log("IBTA_YESTERDAY ",temp);
 
        // const IBTA_TODAY = ;
        // const IBTA_YESTERDAY = ;
@@ -181,16 +189,37 @@ function Oracle () {
     const { data, error, isError, write  } = useContractWrite(config);
 
 
-console.log(-2-1);
-
     return(
         <>
             <h1>chronicle Oracle Data</h1>
             <h1>Average Volatility for crypto basket for 1 day period</h1>
-            <button onClick={getData}>Get Oracle Data</button>
-            <button onClick={write}>Store on blockchain</button>
+            <button style={{ width: '300px', height: '40px' , marginRight: '10px'}} onClick={getData}>Get Oracle Data</button>
+              <p>ETH_USD</p>
+              <p className="red-text">{debouncedEthx}</p>
+              
+              <p>BTC_USD</p>
+              <p className="red-text">{debouncedBtcx}</p>
+
+              <p>MATIC_USD</p>
+              <p className="red-text">{debouncedMaticx}</p>
+
+              <p>OP_USD</p>
+              <p className="red-text">{debouncedOpx}</p>
+
+              <p>SOL_USD</p>
+              <p className="red-text">{debouncedSolx}</p>
+
+              <p>YFI_USD</p>
+              <p className="red-text">{debouncedYfi}</p>
+
+              <p>LINK_USD</p>
+              <p className="red-text">{debouncedLinkx}</p>
+
+    
+            <button style={{ width: '300px', height: '40px' , marginRight: '10px'}} onClick={write}>Store on blockchain</button>
             <p>Average Volatility for 1 day period of crypto basket in comparision to percentage change of traditional finance ETF</p>
-            <button onClick={calculateVolatility}>Calculate Volatility</button>
+            <p className="red-text">{vola}</p>
+            <button style={{ width: '300px', height: '40px' , marginRight: '10px'}} onClick={calculateVolatility}>Calculate Volatility</button>
         </> 
     );
 }
