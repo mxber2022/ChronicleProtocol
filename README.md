@@ -25,3 +25,4 @@ https://explorer.testnet.mantle.xyz/address/0x0f76795A084241a731C7Cc481DceCDF646
 
 ### Tweet link
 
+https://x.com/track_hype/status/1698243099355459894?s=46&t=YV2UOHZWnRF8N312qcLxog
