@@ -94,6 +94,35 @@ function Oracle () {
         setSolx(parseInt(parseInt(SOLPrice[1]._hex).toString().slice(0, -17))/1);
         setYfi(parseInt(YFIPrice[1]._hex).toString().replace(".", "").slice(0, -15));
         setLinkx(parseInt(parseInt(LINKPrice[1]._hex).toString().slice(0, -17))/10);
+
+    }
+
+    async function calculateVolatility() {
+        
+        const tempETH_yes = 160;
+        const tempBTC = 26100;
+        const tempMatic = 0.55;
+        const tempOp = 1.4;
+        const tempsol = 20.1;
+        const tempYfi = 5550;
+        const tempLink = 6;
+
+        const AverageVolatility = Math.abs((parseFloat(debouncedEthx)  - tempETH_yes)/tempETH_yes) + Math.abs((parseFloat(debouncedBtcx)-tempBTC)/tempBTC) + Math.abs((parseFloat(debouncedMaticx)-tempMatic)/tempMatic) + Math.abs((parseFloat(debouncedOpx)-tempOp)/tempOp) + Math.abs((parseFloat(debouncedSolx)-tempsol)/tempsol) + Math.abs((parseFloat(debouncedYfi) -tempYfi)/tempYfi) + Math.abs((parseFloat(debouncedLinkx)-tempLink)/tempLink);
+        console.log("AverageVolatility: ", AverageVolatility);
+
+        /* 
+            IBTA_DATA
+        */
+        const myProvider = new ethers.providers.JsonRpcProvider("https://sepolia.infura.io/v3/e96abcff2f494bcd81fadc53c8fd6ac9");
+        const signer = new ethers.Wallet(process.env.REACT_APP_PRIVATE_KEY, myProvider);
+        const IBTA_CONTRACT = "0x4B5aBFC0Fe78233b97C80b8410681765ED9fC29c"
+        let CONTRACT = new ethers.Contract(IBTA_CONTRACT, abi, signer);
+        let IBTA_DATA = await CONTRACT.tryRead();
+        console.log("IBTA_DATA: ", parseInt(IBTA_DATA[1]._hex));
+
+       // const IBTA_TODAY = ;
+       // const IBTA_YESTERDAY = ;
+
     }
 
     const { config,
@@ -149,7 +178,10 @@ function Oracle () {
         args: [parseInt(debouncedEthx), parseInt(debouncedBtcx), parseInt(debouncedMaticx), parseInt(debouncedOpx), parseInt(debouncedSolx), parseInt(debouncedYfi), parseInt(debouncedLinkx)],
         
     })
-    const { data, error, isError, write  } = useContractWrite(config)
+    const { data, error, isError, write  } = useContractWrite(config);
+
+
+console.log(-2-1);
 
     return(
         <>
@@ -158,6 +190,7 @@ function Oracle () {
             <button onClick={getData}>Get Oracle Data</button>
             <button onClick={write}>Store on blockchain</button>
             <p>Average Volatility for 1 day period of crypto basket in comparision to percentage change of traditional finance ETF</p>
+            <button onClick={calculateVolatility}>Calculate Volatility</button>
         </> 
     );
 }
