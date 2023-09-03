@@ -22,3 +22,6 @@ mantletestnet OracleData contract - 0x0f76795A084241a731C7Cc481DceCDF646064912
 ### Contract deployment Link (mantle testnet explorer)
 
 https://explorer.testnet.mantle.xyz/address/0x0f76795A084241a731C7Cc481DceCDF646064912/contracts#address-tabs
+
+### Tweet link
+
